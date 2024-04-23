@@ -10,6 +10,7 @@ def replace_links_in_file(file_path):
          if "http" in line and not line.startswith("#") and not line.startswith("\\*") and "\\*[" not in line and not re.search(r'\\(\*\s*\[)', line):
             content[i] = re.sub(r'\\(\*)', '_', line)
             content[i] = re.sub(r'_-', r'\-', content[i])  # 将 _- 替换为 \-
+            content[i] = re.sub(r'\\_', r'\\', content[i]) # 将 \_ 替换为 \
 
     with open(file_path, 'w', encoding='utf-8') as file:
         file.writelines(content)
